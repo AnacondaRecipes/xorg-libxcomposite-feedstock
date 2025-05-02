@@ -4,7 +4,6 @@
 {% set name = "xorg-" ~ xorg_name %}
 {% set version = "0.4.6" %}
 {% set sha256 = "fe40bcf0ae1a09070eba24088a5eb9810efe57453779ec1e20a55080c6dc2c87" %}
-{% set am_version = "1.16" %} # keep synchronized with build.sh
 
 package:
   name: {{ name|lower }}
@@ -16,6 +15,8 @@ source:
 
 build:
   number: 2
+  # xorg-libxdmcp, libxcb, libx11, libice aren't available on Windows because their dependencies clash with m2/msys2 and mingw64/ucrt64 toolchains.
+  skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name|lower) }}
 
@@ -50,10 +51,12 @@ test:
 
 about:
   home: https://www.x.org/
+  dev_url: https://gitlab.freedesktop.org/xorg/lib/libxcomposite
+  doc_url: https://gitlab.freedesktop.org/xorg/lib/libxcomposite
   license: MIT
   license_family: MIT
   license_file: COPYING
-  summary: 'X.org X11 Xlib-based client library for the Composite extension to the X11 protocol'
+  summary: X.org X11 Xlib-based client library for the Composite extension to the X11 protocol
 
 extra:
   recipe-maintainers:
