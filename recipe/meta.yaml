@@ -34,11 +34,10 @@ requirements:
     - xorg-libxfixes
     - xorg-util-macros
 
-{% set xorg_ident = "Xcomposite" %}
 test:
   commands:
-    - test -f $PREFIX/lib/lib{{ xorg_ident }}.dylib  # [osx]
-    - test -f $PREFIX/lib/lib{{ xorg_ident }}.so     # [linux]
+    - test -f $PREFIX/lib/libXcomposite.dylib  # [osx]
+    - test -f $PREFIX/lib/libXcomposite.so     # [linux]
 
 about:
   home: https://www.x.org/
