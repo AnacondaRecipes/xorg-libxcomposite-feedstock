@@ -34,13 +34,11 @@ requirements:
     - xorg-libxfixes
     - xorg-util-macros
 
+{% set xorg_ident = "Xcomposite" %}
 test:
   commands:
-    {% set lib_idents = [ xorg_ident ] %}
-    {% for lib_ident in lib_idents %}
-    - test -f $PREFIX/lib/lib{{ lib_ident }}.dylib  # [osx]
-    - test -f $PREFIX/lib/lib{{ lib_ident }}.so     # [linux]
-    {% endfor %}
+    - test -f $PREFIX/lib/lib{{ xorg_ident }}.dylib  # [osx]
+    - test -f $PREFIX/lib/lib{{ xorg_ident }}.so     # [linux]
 
 about:
   home: https://www.x.org/
