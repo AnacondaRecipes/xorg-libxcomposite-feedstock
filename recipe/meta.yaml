@@ -1,5 +1,4 @@
-{% set xorg_name = "libXcomposite" %}
-{% set name = "xorg-" ~ xorg_name %}
+{% set name = "xorg-libXcomposite" %}
 {% set version = "0.4.7" %}
 
 package:
@@ -7,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://www.x.org/releases/individual/lib/{{ xorg_name }}-{{ version }}.tar.xz
+  url: https://www.x.org/releases/individual/lib/{{ name.split('-')[1] }}-{{ version }}.tar.xz
   sha256: 8bdf310967f484503fa51714cf97bff0723d9b673e0eecbf92b3f97c060c8ccb
 
 build:
@@ -27,12 +26,11 @@ requirements:
     - libtool
     - autoconf
     - automake
-    - xorg-util-macros
   host:
-    - xorg-xorgproto
-    - xorg-libx11
-    - xorg-libxfixes
-    - xorg-util-macros
+    - xorg-xorgproto {{ xorg_xorgproto }}
+    - xorg-libx11 {{ xorg_libx11 }}
+    - xorg-libxfixes {{ xorg_libxfixes }}
+    - xorg-util-macros ==1.20.2
 
 test:
   commands:
@@ -47,6 +45,8 @@ about:
   license_family: MIT
   license_file: COPYING
   summary: X.org X11 Xlib-based client library for the Composite extension to the X11 protocol
+  description: |
+      X.org X11 Xlib-based client library for the Composite extension to the X11 protocol
 
 extra:
   recipe-maintainers:
